@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>DeepSeek-OCR Frontend Tool</h1>
+  <h1>DeepSeek-OCR Studio</h1>
   <span><a href="./README_zh.md">中文</a> | English</span>
 </div>
 
