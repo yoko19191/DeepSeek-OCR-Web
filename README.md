@@ -57,8 +57,19 @@ This project is a document parsing tool based on DeepSeek-OCR. The tool can effi
 - **PyTorch**: Requires installing pre-compiled version matching CUDA
 
 ### Quick Start
+#### Method 1: One-click Script Startup (Recommended)
+Execute the following script for one-click startup
 
-#### Step 1: Model Weight Download
+```bash
+# Install model weights and environment dependencies
+bash install.sh
+# Start services
+bash start.sh
+```
+
+#### Method 2: Manual Installation and Running
+
+##### Step 1: Model Weight Download
 First, you need to download the DeepSeek-OCR model weights, which can be obtained from **Hugging Face** or **ModelScope**. The following example uses **ModelScope**:
 
 ```bash
@@ -67,7 +78,7 @@ mkdir ./deepseek-ocr
 modelscope download --model deepseek-ai/DeepSeek-OCR --local_dir ./deepseek-ocr
 ```
 
-#### Step 2: Runtime Environment Setup
+##### Step 2: Runtime Environment Setup
 Download the official project package
 
 ```bash
@@ -95,20 +106,9 @@ Install PyTorch related components
 pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu118
 ```
 
-Install vLLM framework officially recommended by DeepSeek-OCR
-
-> Due to different base dependencies, you need to install a specific version of vLLM to run the DeepSeek-OCR model.
-
-Download [specific version of vLLM pre-compiled binary installation package](https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl)
-
-```bash
-wget --content-disposition "https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl"
-```
-
-Install the downloaded vLLM
-
+Install DeepSeek-OCR officially recommended vLLM version ([v0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl](https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl))
 ```Bash
-pip install vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl
+pip install ./packages/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl
 ```
 
 Install project basic dependencies
@@ -133,14 +133,14 @@ Create a `.env` file in the project root directory and enter the model runtime a
 MODEL_PATH=/root/autodl-tmp/deepseek-ocr
 ```
 
-#### Step 3: Start Backend Service
+##### Step 3: Start Backend Service
 
 Start the backend
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8002 --reload
 ```
 
-#### Step 4: Start Frontend Service
+##### Step 4: Start Frontend Service
 Install frontend dependencies
 ```bash
 npm install

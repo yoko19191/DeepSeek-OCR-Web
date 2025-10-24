@@ -59,8 +59,19 @@
 - **PyTorch**：需安装与 CUDA 匹配的预编译版本
 
 ### 快速开始
+#### 方法一、脚本一键启动（推荐）
+执行以下脚本即可一键启动
 
-#### 步骤 1：模型权重下载
+```bash
+#安装模型权重及环境依赖
+bash install.sh
+#启动服务
+bash start.sh
+```
+
+#### 方法二、手动安装并运行
+
+##### 步骤 1：模型权重下载
 首先需要下载 DeepSeek-OCR 模型权重，可从 **Hugging Face** 或 **魔搭社区（ModelScope）** 获取。以下以 **ModelScope** 为例：
 
 ```bash
@@ -69,7 +80,7 @@ mkdir ./deepseek-ocr
 modelscope download --model deepseek-ai/DeepSeek-OCR --local_dir ./deepseek-ocr
 ```
 
-#### 步骤 2：运行环境搭建
+##### 步骤 2：运行环境搭建
 下载官方项目包
 
 ```bash
@@ -97,20 +108,9 @@ python -m ipykernel install --user --name dsocr --display-name "Python (dsocr)"
 pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu118
 ```
 
-​安装DeepSeek-OCR官方推荐使用的框架vLLM
-
-> 由于基础依赖的不同，需要安装指定版本的vLLM才能运行DeepSeek-OCR模型。
-
-下载 [特定版本的vLLM预编译的二进制安装包](https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl)
-
-```bash
-wget --content-disposition "https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl"
-```
-
-安装下载的vLLM
-
+​安装DeepSeek-OCR官方推荐使用的vLLM版本([v0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl](https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl))
 ```Bash
-pip install vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl
+pip install ./packages/vllm-0.8.5+cu118-cp38-abi3-manylinux1_x86_64.whl
 ```
 
 安装项目基础依赖
@@ -134,7 +134,7 @@ pip install flash-attn==2.7.3 --no-build-isolation
 MODEL_PATH=/root/autodl-tmp/deepseek-ocr
 ```
 
-#### 步骤 3：启动后端服务
+##### 步骤 3：启动后端服务
 
 
 开启后端
@@ -143,7 +143,7 @@ uvicorn main:app --host 0.0.0.0 --port 8002 --reload
 ```
 
 
-#### 步骤 4：启动前端服务
+##### 步骤 4：启动前端服务
 安装前端依赖
 ```bash
 npm install
