@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+      args:
+        CUDA_IMAGE: nvidia/cuda:11.8.0-devel-ubuntu22.04
+        NODE_VERSION: 20
+    image: deepseek-ocr-backend:latest
+    ports:
+      - "8002:8002"
+    environment:
+      MODEL_PATH: /models/DeepSeek-OCR
+      DEVICE_ID: "0"
+      MAX_CONCURRENCY: "4"
+    volumes:
+      - ./deepseek-ocr:/models/DeepSeek-OCR
+      - backend_workspace:/app/workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    shm_size: "2gb"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+      args:
+        NODE_VERSION: 20
+    image: deepseek-ocr-frontend:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_workspace:
