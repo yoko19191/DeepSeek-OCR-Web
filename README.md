@@ -5,8 +5,9 @@
 
 ## ⚡ Project Overview
 
-This project is a document parsing tool based on DeepSeek-OCR. The tool can efficiently process PDF documents and images, providing powerful Optical Character Recognition (OCR) capabilities, supporting multi-language text recognition, table parsing, chart analysis, and many other features.
-
+This project is a multimodal document parsing tool based on DeepSeek-OCR with React frontend and FastAPI backend.
+![项目图片](assets/项目图片.png)
+This tool can efficiently process PDF documents and images, providing powerful Optical Character Recognition (OCR) capabilities, supporting multi-language text recognition, table parsing, chart analysis, and many other features.
 ### Key Features
 
 - **Multi-format Document Parsing**: Supports uploading and parsing documents in various formats such as PDF and images
